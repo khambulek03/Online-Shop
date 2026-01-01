@@ -1,4 +1,7 @@
 application-dev.properties
+V1__create_customer_table.sql
+V2__create_product_table.sql
+V3__create_wallet_table.sql
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar

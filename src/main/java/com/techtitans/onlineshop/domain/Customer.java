@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -25,11 +25,17 @@ public class Customer {
     @NotBlank
     private String name;
 
+    @NotBlank
+    private String surname;
+
     @Email
     @Column(unique = true, nullable = false)
     private String email;
+
+    @NotBlank
     private String phone;
 
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist
