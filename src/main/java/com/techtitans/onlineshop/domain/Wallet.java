@@ -24,12 +24,20 @@ public class Wallet {
     @Min(value = 0)
     private Double balance;
 
+    @Column(unique = true, nullable = false, updatable = false)
     private UUID customerId;
 
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @PrePersist
     private void onCreate() {
         this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }
