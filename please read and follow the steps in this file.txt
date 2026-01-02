@@ -1,0 +1,39 @@
+1. run these sql commands in mysql workbench
+    create database if not exist <schema_name>;
+    create user '<username>'@'localhost' identified by '<create_password>';
+    grant all privileges on <schema_name> to '<username>'@'localhost';
+    flush privileges;
+    - by running the above sql command on mysql workbench, a new schema would be created and its user with password,
+        you will no longer be using your root user and root password as usual.
+
+2 change the database name to your schema name in *application-dev.properties*, that is,
+    spring.datasource.url=jdbc:mysql://localhost:3306/<your_created_schema_name>?...
+    WHAT IS THIS "-dev"? simply a profile that indicates to spring what phase are you working on.
+    application-dev.properties -> development phase, developers
+    application-prod.properties -> production, for devops
+    application-test.properties -> test, used by testers when testing the application
+
+3 from the application-dev.properties, please find the placeholders for username and password.
+    spring.datasource.username=${DATABASE_USERNAME:<remember to use the username set on mysql workbench>}
+    spring.datasource.password=${DATABASE_PASSWORD:<again the password created there>}
+
+4 go to intellij's terminal, and create 3 environment variables 2 as exist in your *application-dev.properties*
+    $env:DATABASE_USERNAME="remember to use the username set on mysql workbench"
+    $env:DATABASE_PASSWORD="again the password created there"
+    $env:SPRING_PROFILES_ACTIVE="dev" this line tells spring which profile is active during development phase. DON'T CHANGE IT!!!
+    NOTE: these are three separate commands, run them one at a time.
+    HOW TO SEE IF THEY WERE CREATED AND ASSIGNED VALUES?
+    run on your intellij's terminal
+    echo $env:DATABASE_USERNAME
+    you should see the value you just gave.
+
+    but what is this DATABASE_USERNAME and DATABASE_PASSWORD, simply both are placeholders for actual username and password.
+    can they be changed? YES, e.g, $env:DB_UNAME is valid for setting the username variable. any name it's a dev's choice.
+
+
+WHY DEVELOPERS NEED TO DO THIS?
+    - DEVELOPMENT ENVIRONMENTS ARE NOT THE SAME IN CONFIGS, EVEN IF THEY ALL USE SAME IDE, DATABASES BUT STILL NOT
+      COMFORTABLE WITH THE SAME IDEAS.
+    - IN TERMS OF SECURING THE PASSWORD AND USERNAME OF THEIR DB.
+      YOU DO NOT WANT YOUR TEAM TO KNOW THE PASSWORD TO YOUR DB.
+

@@ -1,0 +1,24 @@
+1.
+    create database if not exist students_database;
+    create user 'developer'@'localhost' identified by 'my_password';
+    grant all privileges on students_database to 'developer'@'localhost';
+    flush privileges;
+
+2.
+    spring.datasource.url=jdbc:mysql://localhost:3306/students_database?...
+
+3.
+    spring.datasource.username=${DATABASE_USERNAME:developer}
+    spring.datasource.password=${DATABASE_PASSWORD:my_password}
+
+4.
+    > $env:DATABASE_USERNAME="developer"
+    > $env:DATABASE_PASSWORD="my_password"
+    > $env:SPRING_PROFILES_ACTIVE="dev"
+
+    > echo $env:DATABASE_USERNAME
+        developer
+    > echo $env:DATABASE_PASSWORD
+        my_password
+    > echo $env:SPRING_PROFILES_ACTIVE
+        dev
