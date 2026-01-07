@@ -5,8 +5,10 @@ import com.techtitans.onlineshop.dto.WalletDataRequest;
 import com.techtitans.onlineshop.exception.custom.NotFoundException;
 import com.techtitans.onlineshop.exception.custom.ObjectAlreadyExistException;
 import com.techtitans.onlineshop.repository.WalletRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -46,7 +48,7 @@ public class WalletService {
             throw new NotFoundException("Customer does not exist, please make sure you are registered");
         }
 
-        if (walletRepository.findWalletByCustomerId(walletDataRequest.customerId()) != null) {
+        if (walletRepository.findWalletByCustomerId(walletDataRequest.customerId()).isPresent()) {
             logger.info("Customer already have a wallet");
             throw new ObjectAlreadyExistException("You already have a wallet");
         }
