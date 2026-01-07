@@ -1,7 +1,7 @@
 1.
     create database if not exist students_database;
     create user 'developer'@'localhost' identified by 'my_password';
-    grant all privileges on students_database to 'developer'@'localhost';
+    grant all privileges on students_database.* to 'developer'@'localhost';
     flush privileges;
 
 2.
