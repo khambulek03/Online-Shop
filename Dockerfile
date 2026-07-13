@@ -9,12 +9,13 @@ COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw .
 
-RUN chmod +x mvnw
+#RUN chmod +x mvnw
 
+RUN mvn dependency:go-offline
 COPY src ./src
 
 # Build the application
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 
 # ==========================
