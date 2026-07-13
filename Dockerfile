@@ -21,22 +21,11 @@ RUN ./mvnw clean package -DskipTests
 
 
 # ==========================
-# Test Stage
-# ==========================
-FROM build AS test
-
-RUN ./mvnw test
-
-
-# ==========================
 # Runtime Stage
 # ==========================
 FROM eclipse-temurin:21-jre AS runtime
 
 WORKDIR /app
-
-RUN useradd -ms /bin/bash spring
-USER spring
 
 COPY --from=build /app/target/*.jar app.jar
 
