@@ -12,7 +12,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping(path = "api/shop/customers")
+@RequestMapping(path = "api/products")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -22,16 +22,6 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    @ResponseStatus(OK)
-    public Page<Customer> getAllCustomers(@RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "20") int size,
-                                          @RequestParam(defaultValue = "name") String sort) {
-        return customerService.customers(page, size, sort);
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<Customer> register(@Valid @RequestBody CustomerDataRequest dataRequest) {
-        Customer customer = customerService.register(dataRequest);
-        return customer != null ? ResponseEntity.status(CREATED).body(customer) : ResponseEntity.badRequest().build();
-    }
+    public String greetings() {
+        return "Hello on Railway";
 }
