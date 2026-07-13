@@ -11,9 +11,6 @@ COPY mvnw .
 
 RUN chmod +x mvnw
 
-# Cache Maven dependencies
-RUN ./mvnw dependency:go-offline
-
 COPY src ./src
 
 # Build the application
