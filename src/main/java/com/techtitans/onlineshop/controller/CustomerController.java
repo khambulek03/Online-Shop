@@ -24,4 +24,5 @@ public class CustomerController {
     @GetMapping("/")
     public String greetings() {
         return "Hello on Railway";
+    }
 }
