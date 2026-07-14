@@ -3,9 +3,10 @@ package com.techtitans.onlineshop.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(path = "/")
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping
     public Map<String, Object> home() {
         return Map.of(
             "application", "Online Shop API",
