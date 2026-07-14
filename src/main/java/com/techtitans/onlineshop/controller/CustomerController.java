@@ -12,7 +12,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping(path = "api/products")
 public class CustomerController {
 
-    @GetMapping
+    @GetMapping("/")
     public String greetings() {
         return "Hello on Railway";
     }
